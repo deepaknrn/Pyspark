@@ -1,0 +1,21 @@
+-- Database: prespipeline
+
+-- DROP DATABASE IF EXISTS prespipeline;
+
+CREATE DATABASE prespipeline
+    WITH
+    OWNER = postgres
+    ENCODING = 'UTF8'
+    LC_COLLATE = 'English_Australia.1252'
+    LC_CTYPE = 'English_Australia.1252'
+    LOCALE_PROVIDER = 'libc'
+    TABLESPACE = pg_default
+    CONNECTION LIMIT = -1
+    IS_TEMPLATE = False;
+
+GRANT TEMPORARY, CONNECT ON DATABASE prespipeline TO PUBLIC;
+
+GRANT ALL ON DATABASE prespipeline TO postgres;
+
+GRANT ALL ON DATABASE prespipeline TO prescpipeline_user;
+GRANT ALL ON DATABASE prespipeline TO itversity_retail_user;

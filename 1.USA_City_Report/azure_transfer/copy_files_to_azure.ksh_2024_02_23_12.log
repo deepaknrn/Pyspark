@@ -1,0 +1,64 @@
++ date
++ echo copy_files_to_azure.ksh Started...: Fri Feb 23 12:38:08 UTC 2024
+copy_files_to_azure.ksh Started...: Fri Feb 23 12:38:08 UTC 2024
++ LOCAL_OUTPUT_PATH=/home/deepaknrn/Spark_Learning_Projects/1.USA_City_Report/src/main/python/staging
++ LOCAL_CITY_DIR=/home/deepaknrn/Spark_Learning_Projects/1.USA_City_Report/src/main/python/staging/dimension_city
++ LOCAL_FACT_DIR=/home/deepaknrn/Spark_Learning_Projects/1.USA_City_Report/src/main/python/staging/fact
++ citySasUrl=https://prescpipeline.blob.core.windows.net/dimension-city/2024-02-23-12-38-08?st=2024-02-23T12:24:11Z&se=2024-02-23T20:24:11Z&si=writeaccess&spr=https&sv=2022-11-02&sr=c&sig=hYX6fdYG9lTmD1koRPxlpEHD5BQdkq8YiOfY6FsgCnQ%3D
++ prescSasUrl=https://prescpipeline.blob.core.windows.net/presc/2024-02-23-12-38-08?st=2024-02-23T12:34:35Z&se=2024-02-23T20:34:35Z&si=write&spr=https&sv=2022-11-02&sr=c&sig=DWlNNsa8qdVd0tqyy3mgltBH3QAAoyyOXio0t76bczg%3D
++ azcopy copy /home/deepaknrn/Spark_Learning_Projects/1.USA_City_Report/src/main/python/staging/dimension_city/* https://prescpipeline.blob.core.windows.net/dimension-city/2024-02-23-12-38-08?st=2024-02-23T12:24:11Z&se=2024-02-23T20:24:11Z&
+si=writeaccess&spr=https&sv=2022-11-02&sr=c&sig=hYX6fdYG9lTmD1koRPxlpEHD5BQdkq8YiOfY6FsgCnQ%3D
+INFO: Scanning...
+INFO: Any empty folders will not be processed, because source and/or destination doesn't have full folder support
+
+Job 0657f07b-3b7d-a34c-62a6-1d1b926b3d8d has started
+Log file is located at: /home/deepaknrn/.azcopy/0657f07b-3b7d-a34c-62a6-1d1b926b3d8d.log
+
+INFO: Could not read destination length. If the destination is write-only, use --check-length=false on the command line.
+
+
+
+Job 0657f07b-3b7d-a34c-62a6-1d1b926b3d8d summary
+Elapsed Time (Minutes): 0.0334
+Number of File Transfers: 1
+Number of Folder Property Transfers: 0
+Number of Symlink Transfers: 0
+Total Number of Transfers: 1
+Number of File Transfers Completed: 1
+Number of Folder Transfers Completed: 0
+Number of File Transfers Failed: 0
+Number of Folder Transfers Failed: 0
+Number of File Transfers Skipped: 0
+Number of Folder Transfers Skipped: 0
+TotalBytesTransferred: 1328379
+Final Job Status: Completed
+
++ azcopy copy /home/deepaknrn/Spark_Learning_Projects/1.USA_City_Report/src/main/python/staging/fact/* https://prescpipeline.blob.core.windows.net/presc/2024-02-23-12-38-08?st=2024-02-23T12:34:35Z&se=2024-02-23T20:34:35Z&si=write&spr=https&
+sv=2022-11-02&sr=c&sig=DWlNNsa8qdVd0tqyy3mgltBH3QAAoyyOXio0t76bczg%3D
+INFO: Scanning...
+INFO: Any empty folders will not be processed, because source and/or destination doesn't have full folder support
+
+Job 5de58619-8e14-2243-48f4-8fda5ef52304 has started
+Log file is located at: /home/deepaknrn/.azcopy/5de58619-8e14-2243-48f4-8fda5ef52304.log
+
+INFO: Could not read destination length. If the destination is write-only, use --check-length=false on the command line.
+
+
+
+Job 5de58619-8e14-2243-48f4-8fda5ef52304 summary
+Elapsed Time (Minutes): 0.0334
+Number of File Transfers: 1
+Number of Folder Property Transfers: 0
+Number of Symlink Transfers: 0
+Total Number of Transfers: 1
+Number of File Transfers Completed: 1
+Number of Folder Transfers Completed: 0
+Number of File Transfers Failed: 0
+Number of Folder Transfers Failed: 0
+Number of File Transfers Skipped: 0
+Number of Folder Transfers Skipped: 0
+TotalBytesTransferred: 193593344
+Final Job Status: Completed
+
++ date
++ echo The copy_files_to_azure.ksh is Completed...: Fri Feb 23 12:38:12 UTC 2024

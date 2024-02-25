@@ -1,0 +1,18 @@
+C:\WINDOWS\system32>cd C:\Users\IDME\PycharmProjects\Spark_Learning_Projects\1.USA_City_Report\src\main\python\lib
+
+C:\Users\IDME\PycharmProjects\Spark_Learning_Projects\1.USA_City_Report\src\main\python\lib>pyspark --master "local[*]" --jars postgresql-42.7.1.jar
+
+>>> df=spark.createDataFrame(data=(("Deepak","1"),("Chandni","2")),schema=("Name string,ID string"))
+>>> df.printSchema()
+root
+ |-- Name: string (nullable = true)
+ |-- ID: string (nullable = true)
+
+df.write.format("jdbc")\
+   .option("url","jdbc:postgresql://localhost:5432/prespipeline") \
+   .option("driver","org.postgresql.Driver") \
+   .option("dbtable","sampledf") \
+   .mode("append") \
+   .option("user","prescpipeline_user") \
+   .option("password","deepak123") \
+   .save()

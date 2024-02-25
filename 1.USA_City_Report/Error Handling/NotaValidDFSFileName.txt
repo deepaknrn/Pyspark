@@ -1,0 +1,2 @@
+https://stackoverflow.com/questions/68495615/pyspark-sql-utils-illegalargumentexception
+https://stackoverflow.com/questions/33618656/python-windowserror-error-123-the-filename-directory-name-or-volume-label-s

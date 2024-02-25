@@ -1,0 +1,4 @@
+https://stackoverflow.com/questions/73193119/python-filenotfounderror-winerror-2-the-system-cannot-find-the-file-specifie
+https://stackoverflow.com/questions/27645174/using-subprocess-to-launch-hadoop-job-but-cant-get-log-from-stdout
+https://stackoverflow.com/questions/32381942/get-a-list-of-file-names-from-hdfs-using-python
+

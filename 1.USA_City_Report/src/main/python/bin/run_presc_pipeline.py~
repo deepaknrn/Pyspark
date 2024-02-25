@@ -1,0 +1,183 @@
+### Import all the necessary Modules
+
+import get_all_variables as gav
+from create_objects import get_spark_object
+from validations import get_current_date,validate_dfcount,df_top10_rec,df_print_schema
+from run_presc_data_ingest import load_files
+from presc_run_data_preprocessing import perform_data_clean_dfcity,perform_data_clean_dffact
+from presc_run_data_transform import city_report,prescriber_report
+from presc_run_data_extraction import extract_files_city,extract_files_fact,extract_files_city_hdfs,extract_files_fact_hdfs
+from subprocess import Popen,PIPE
+import argparse
+import sys,os
+import logging,logging.config
+
+def main():
+    parser = argparse.ArgumentParser()
+    requiredNamed = parser.add_argument_group('required named arguments')
+    requiredNamed.add_argument('--env', help='Provide environment [WINDOWS,HDFS]', required=True)
+    args = parser.parse_args()
+    env = args.env
+
+    if env in ("WINDOWS","HDFS"):
+    ##Load the Logging configuration file
+        log_path = gav.current_path + "\\util\\usa_city_report.conf"  # WINDOWS
+    # log_path = gav.current_path + "/util/usa_city_report.conf"  #HDFS
+    logging.config.fileConfig(fname=log_path)
+    logging.info(f" The environment selected is {env}",exc_info=True)
+
+    ### Get All Variables
+
+    ### Get Spark Object
+    try:
+
+            logging.info("main() is started")
+            if env=="WINDOWS":
+                envn="test"
+            elif env=="HDFS":
+                envn="prod"
+            else:
+                logging.info("Incorrect Environment Specified " , exc_info=True)
+                sys.exit(1)
+            spark=get_spark_object(envn,gav.appName)
+            logging.info("Spark Object has been created " + str(spark))
+        # Validate Spark Object
+            get_current_date(spark)
+        # Set up Logging Configuration Mechanism
+        # Set up Error Handling
+
+    ### Initiate run_presc_data_ingest Script
+        # Load the City File
+            if env == "WINDOWS":
+                for file in os.listdir(gav.staging_dimension_city):
+                    file=str(file)
+                    file_dir=gav.staging_dimension_city+'\\'+file
+                    logging.info("File Path is " + file_dir)
+                    if file.split(".")[1]=="csv":
+                        file_format="csv"
+                        header=gav.header
+                        infer_schema=gav.infer_schema
+                    elif file.split(".")[1]=="parquet":
+                        file_format="parquet"
+                        header="NA"
+                        infer_schema="NA"
+            elif env =="HDFS":
+                #file_dir="/data/dev/gi/staging/retention/land/d_gi_land_mqfte/staging/dimension_city"
+                file='us_cities_dimension.parquet'
+                file_dir=gav.staging_dimension_city_hdfs+'/'+file
+                logging.info("File Path is " + file_dir)
+                proc = Popen(['hdfs', 'dfs', '-ls', '-C', file_dir], shell=True,stdout=PIPE, stderr=PIPE)
+                (out, err) = proc.communicate()
+                if 'parquet' in out.decode():
+                    file_format="parquet"
+                    header="NA"
+                    infer_schema="NA"
+                elif 'csv' in out.decode():
+                    file_format="csv"
+                    header=gav.header
+                    infer_schema=gav.infer_schema
+            df_city=load_files(spark=spark,file_dir=file_dir,file_format=file_format,header=header,infer_schema=infer_schema)
+            # Validate
+            validate_dfcount(df=df_city,dfName="df_city")
+            df_top10_rec(df=df_city,dfName="df_city")
+            # Set up Logging Configuration Mechanism
+            # Set up Error Handling
+
+        # Load the Prescriber Fact File
+            if env == "WINDOWS":
+                for file in os.listdir(gav.staging_fact):
+                    file=str(file)
+                    file_dir=gav.staging_fact+'\\'+file
+                    logging.info("File Path is " + file_dir)
+                    if file.split(".")[1]=="csv":
+                        file_format="csv"
+                        header=gav.header
+                        infer_schema=gav.infer_schema
+                    elif file.split(".")[1]=="parquet":
+                        file_format="parquet"
+                        header="NA"
+                        infer_schema="NA"
+            elif env == "HDFS":
+                file = 'USA_Presc_Medicare_Data_12021.csv'
+                file_dir = gav.staging_fact_hdfs+'/'+file
+                logging.info("File Path is " + file_dir)
+                proc = Popen(['hdfs', 'dfs', '-ls', '-C', file_dir], shell=True,stdout=PIPE, stderr=PIPE)
+                (out, err) = proc.communicate()
+                if 'parquet' in out.decode():
+                    file_format = "parquet"
+                    header = "NA"
+                    infer_schema = "NA"
+                elif 'csv' in out.decode():
+                    file_format = "csv"
+                    header = gav.header
+                    infer_schema = gav.infer_schema
+            df_fact=load_files(spark=spark,file_dir=file_dir,file_format=file_format,header=header,infer_schema=infer_schema)
+        # Validate
+            # Validate
+            validate_dfcount(df=df_fact, dfName="df_fact")
+            df_top10_rec(df=df_fact, dfName="df_fact")
+        # Set up Logging Configuration Mechanism
+        # Set up Error Handling
+
+    ### Initiate run_presc_data_preprocessing Script
+        # Perform data Cleaning Operations
+            df_city_sel=perform_data_clean_dfcity(df1=df_city,dfName="df_city")
+            df_fact_sel=perform_data_clean_dffact(df2=df_fact,dfName="df_fact")
+        # Validate
+            validate_dfcount(df=df_city_sel, dfName="df_city_sel")
+            df_top10_rec(df=df_city_sel, dfName="df_city_sel")
+            validate_dfcount(df=df_fact_sel, dfName="df_fact_sel")
+            df_top10_rec(df=df_fact_sel, dfName="df_fact_sel")
+        # Print Schema
+            df_print_schema(df=df_city_sel,dfName='df_city')
+            df_print_schema(df=df_fact_sel,dfName='df_fact')
+        # Set up Logging Configuration Mechanism
+        # Set up Error Handling
+
+    ### Initiate run_presc_data_transform Script
+        # Apply all the transfrmations Logics
+            df_city_final_sel=city_report(df_city_sel,df_fact_sel,dfName="dfcity")
+            df_fact_final_sel=prescriber_report(df_fact_sel)
+        # Print Schema
+            df_print_schema(df=df_city_final_sel, dfName='df_city_final_sel')
+        # Validate
+            validate_dfcount(df=df_city_final_sel, dfName="df_city_final_sel")
+            df_top10_rec(df=df_city_final_sel, dfName="df_city_final_sel")
+        # Set up Logging Configuration Mechanism
+        # Set up Error Handling
+
+    ### Initiate run_presc_data_transform Script
+        # Apply all the transfrmations Logics
+
+            # Print Schema
+            df_print_schema(df=df_fact_final_sel, dfName='df_fact_final_sel')
+            # Validate
+            validate_dfcount(df=df_fact_final_sel, dfName="df_fact_final_sel")
+            df_top10_rec(df=df_fact_final_sel, dfName="df_fact_final_sel")
+            # Set up Logging Configuration Mechanism
+            # Set up Error Handling
+
+    ### Initiate run_data_extraction Script
+        # Validate
+            if env == "WINDOWS":
+                extract_files_city(df_city_final_sel, "df_city_final_sel","json", gav.file_path_city, 1, False, "bzip2")
+                extract_files_fact(df_fact_final_sel, "df_fact_final_sel", "orc", gav.file_path_fact, 2, False, "snappy")
+            elif env == "HDFS":
+                extract_files_city_hdfs(df_city_final_sel, "df_city_final_sel", "json", gav.file_path_city, 1, False,"bzip2")
+                extract_files_fact_hdfs(df_fact_final_sel, "df_fact_final_sel", "orc", gav.file_path_fact, 2, False,"snappy")
+
+           #Postgre SQL Data Persist
+            if env=="HDFS":
+                extract_files_city_postgre_sql(df_city_final_sel, "df_city_final_sel")
+                extract_files_fact_postgre_sql(df_fact_final_sel, "df_fact_final_sel")
+
+        # Set up Logging Configuration Mechanism
+        # Set up Error Handling
+            logging.info("run_pres_pipeline.py is Completed")
+### End of Application Part 1
+    except Exception as exp:
+            logging.error("Error occurred in the main() method. Please check the Stack Trace to go to the respective module" + str(exp),exc_info=True)
+            sys.exit(1)
+
+if __name__ == "__main__" :
+            main()

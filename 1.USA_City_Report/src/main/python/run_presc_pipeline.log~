@@ -1,0 +1,429 @@
+2024-02-22 00:13:03,528-root-INFO- The environment selected is HDFS
+NoneType: None
+2024-02-22 00:13:03,528-root-INFO-main() is started
+2024-02-22 00:13:03,528-create_objects-INFO-get_spark_object() has been started. The 'prod' envn is used. 
+2024-02-22 00:17:54,180-create_objects-INFO-get_spark_object() has been executed. Spark Object created.
+2024-02-22 00:17:54,181-root-INFO-Spark Object has been created <pyspark.sql.session.SparkSession object at 0x00000141CBCA6680>
+2024-02-22 00:19:14,989-validations-INFO-Validate the spark object creation by printing the Current Date[Row(current_date()=datetime.date(2024, 2, 22))]
+2024-02-22 00:19:14,989-validations-INFO-Spark object has been validated. Spark Object is ready
+2024-02-22 00:19:14,989-root-INFO-File Path is /hdfs_windows/Spark_Learning_Projects_Input_Files/dimension_city/us_cities_dimension.parquet
+2024-02-22 00:19:19,459-run_presc_data_ingest-INFO-load_files() function has been started
+2024-02-22 00:19:19,459-run_presc_data_ingest-INFO-spark.read.formatparquet.load/hdfs_windows/Spark_Learning_Projects_Input_Files/dimension_city/us_cities_dimension.parquet
+2024-02-22 00:19:21,346-run_presc_data_ingest-INFO-The input file '/hdfs_windows/Spark_Learning_Projects_Input_Files/dimension_city/us_cities_dimension.parquet' has been loaded to the spark dataframe. The load_files() function is completed successfully 
+2024-02-22 00:19:21,346-validations-INFO-The Dataframe Validation by count df_count() is started for dataframe 'df_city' 
+2024-02-22 00:19:24,011-validations-INFO- The Dataframe 'df_city' count is : 28338
+2024-02-22 00:19:24,011-validations-INFO- The Dataframe 'df_city' schema is :None
+2024-02-22 00:19:24,011-validations-INFO- The Dataframe 'df_city' validation has been completed successfully.
+2024-02-22 00:19:24,011-validations-INFO-The Dataframe Validation by top 10 records df_top10_rec() is started for dataframe 'df_city' 
+2024-02-22 00:19:24,011-validations-INFO-The Dataframe top 10 records are : 
+2024-02-22 00:19:24,818-validations-INFO-
+ 	 'DataFrame[city: string, city_ascii: string, state_id: string, state_name: string, county_fips: int, county_name: string, lat: double, lng: double, population: int, density: int, timezone: string, zips: string]'
+2024-02-22 00:19:24,818-validations-INFO-The Dataframe Validation by top10 records df_top_rec() is completed for dataframe 'df_city'
+2024-02-22 00:19:24,818-root-INFO-File Path is /hdfs_windows/Spark_Learning_Projects_Input_Files/dimension_fact/USA_Presc_Medicare_Data_12021.csv
+2024-02-22 00:19:28,669-run_presc_data_ingest-INFO-load_files() function has been started
+2024-02-22 00:19:28,669-run_presc_data_ingest-INFO-spark.read.formatcsv.load/hdfs_windows/Spark_Learning_Projects_Input_Files/dimension_fact/USA_Presc_Medicare_Data_12021.csv
+2024-02-22 00:19:29,953-run_presc_data_ingest-INFO-The input file '/hdfs_windows/Spark_Learning_Projects_Input_Files/dimension_fact/USA_Presc_Medicare_Data_12021.csv' has been loaded to the spark dataframe. The load_files() function is completed successfully 
+2024-02-22 00:19:29,953-validations-INFO-The Dataframe Validation by count df_count() is started for dataframe 'df_fact' 
+2024-02-22 00:19:32,498-validations-INFO- The Dataframe 'df_fact' count is : 1329329
+2024-02-22 00:19:32,499-validations-INFO- The Dataframe 'df_fact' schema is :None
+2024-02-22 00:19:32,499-validations-INFO- The Dataframe 'df_fact' validation has been completed successfully.
+2024-02-22 00:19:32,499-validations-INFO-The Dataframe Validation by top 10 records df_top10_rec() is started for dataframe 'df_fact' 
+2024-02-22 00:19:32,500-validations-INFO-The Dataframe top 10 records are : 
+2024-02-22 00:19:32,918-validations-INFO-
+ 	 'DataFrame[npi: string, nppes_provider_last_org_name: string, nppes_provider_first_name: string, nppes_provider_city: string, nppes_provider_state: string, specialty_description: string, description_flag: string, drug_name: string, generic_name: string, bene_count: string, total_claim_count: string, total_30_day_fill_count: string, total_day_supply: string, total_drug_cost: string, bene_count_ge65: string, bene_count_ge65_suppress_flag: string, total_claim_count_ge65: string, ge65_suppress_flag: string, total_30_day_fill_count_ge65: string, total_day_supply_ge65: string, total_drug_cost_ge65: string, years_of_exp: string]'
+2024-02-22 00:19:32,918-validations-INFO-The Dataframe Validation by top10 records df_top_rec() is completed for dataframe 'df_fact'
+2024-02-22 00:19:32,918-presc_run_data_preprocessing-INFO-perform_data_clean() function has been started for dataframe 'df_city'
+2024-02-22 00:19:32,968-presc_run_data_preprocessing-INFO-perform_data_clean() function has been completed successfully for dataframe 'df_city'
+2024-02-22 00:19:32,968-presc_run_data_preprocessing-INFO-perform_data_clean() function has been started for dataframe 'df_fact'
+2024-02-22 00:19:33,201-presc_run_data_preprocessing-INFO-perform_data_clean() function has been completed successfully for dataframe 'df_fact'
+2024-02-22 00:19:33,201-validations-INFO-The Dataframe Validation by count df_count() is started for dataframe 'df_city_sel' 
+2024-02-22 00:19:33,919-validations-INFO- The Dataframe 'df_city_sel' count is : 28338
+2024-02-22 00:19:33,919-validations-INFO- The Dataframe 'df_city_sel' schema is :None
+2024-02-22 00:19:33,919-validations-INFO- The Dataframe 'df_city_sel' validation has been completed successfully.
+2024-02-22 00:19:33,919-validations-INFO-The Dataframe Validation by top 10 records df_top10_rec() is started for dataframe 'df_city_sel' 
+2024-02-22 00:19:33,919-validations-INFO-The Dataframe top 10 records are : 
+2024-02-22 00:19:34,537-validations-INFO-
+ 	 'DataFrame[city: string, state_id: string, state_name: string, county_name: string, population: int, zips: string]'
+2024-02-22 00:19:34,537-validations-INFO-The Dataframe Validation by top10 records df_top_rec() is completed for dataframe 'df_city_sel'
+2024-02-22 00:19:34,537-validations-INFO-The Dataframe Validation by count df_count() is started for dataframe 'df_fact_sel' 
+2024-02-22 00:19:36,844-validations-INFO- The Dataframe 'df_fact_sel' count is : 1329292
+2024-02-22 00:19:36,844-validations-INFO- The Dataframe 'df_fact_sel' schema is :None
+2024-02-22 00:19:36,844-validations-INFO- The Dataframe 'df_fact_sel' validation has been completed successfully.
+2024-02-22 00:19:36,844-validations-INFO-The Dataframe Validation by top 10 records df_top10_rec() is started for dataframe 'df_fact_sel' 
+2024-02-22 00:19:36,844-validations-INFO-The Dataframe top 10 records are : 
+2024-02-22 00:19:45,452-validations-INFO-
+ 	 'DataFrame[presc_id: string, presc_city: string, presc_state: string, presc_spclt: string, years_of_exp: int, drug_name: string, trx_cnt: int, total_day_supply: string, total_drug_cost: string, country_name: string, presc_fullname: string]'
+2024-02-22 00:19:45,452-validations-INFO-The Dataframe Validation by top10 records df_top_rec() is completed for dataframe 'df_fact_sel'
+2024-02-22 00:19:45,452-validations-INFO-The Dataframe Schema Validation for Dataframe 'df_city'
+2024-02-22 00:19:45,452-validations-INFO-The Dataframe 'df_city' schema is 
+2024-02-22 00:19:45,452-validations-INFO-	 'StructField('city', StringType(), True)' 
+2024-02-22 00:19:45,452-validations-INFO-	 'StructField('state_id', StringType(), True)' 
+2024-02-22 00:19:45,452-validations-INFO-	 'StructField('state_name', StringType(), True)' 
+2024-02-22 00:19:45,452-validations-INFO-	 'StructField('county_name', StringType(), True)' 
+2024-02-22 00:19:45,461-validations-INFO-	 'StructField('population', IntegerType(), True)' 
+2024-02-22 00:19:45,461-validations-INFO-	 'StructField('zips', StringType(), True)' 
+2024-02-22 00:19:45,461-validations-INFO- The Dataframe Schema Validation is completed
+2024-02-22 00:19:45,461-validations-INFO-The Dataframe Schema Validation for Dataframe 'df_fact'
+2024-02-22 00:19:45,461-validations-INFO-The Dataframe 'df_fact' schema is 
+2024-02-22 00:19:45,461-validations-INFO-	 'StructField('presc_id', StringType(), True)' 
+2024-02-22 00:19:45,461-validations-INFO-	 'StructField('presc_city', StringType(), True)' 
+2024-02-22 00:19:45,461-validations-INFO-	 'StructField('presc_state', StringType(), True)' 
+2024-02-22 00:19:45,461-validations-INFO-	 'StructField('presc_spclt', StringType(), True)' 
+2024-02-22 00:19:45,461-validations-INFO-	 'StructField('years_of_exp', IntegerType(), True)' 
+2024-02-22 00:19:45,461-validations-INFO-	 'StructField('drug_name', StringType(), True)' 
+2024-02-22 00:19:45,461-validations-INFO-	 'StructField('trx_cnt', IntegerType(), True)' 
+2024-02-22 00:19:45,461-validations-INFO-	 'StructField('total_day_supply', StringType(), True)' 
+2024-02-22 00:19:45,461-validations-INFO-	 'StructField('total_drug_cost', StringType(), True)' 
+2024-02-22 00:19:45,461-validations-INFO-	 'StructField('country_name', StringType(), False)' 
+2024-02-22 00:19:45,461-validations-INFO-	 'StructField('presc_fullname', StringType(), False)' 
+2024-02-22 00:19:45,463-validations-INFO- The Dataframe Schema Validation is completed
+2024-02-22 00:19:45,463-presc_run_data_transform-INFO-city_report() function has been started for dataframe 'dfcity'
+2024-02-22 00:19:45,594-presc_run_data_transform-INFO-city_report() function has been completed for dataframe 'dfcity'
+2024-02-22 00:19:45,594-presc_run_data_transform-INFO-Transform - top_5_Prescribers() is started...
+2024-02-22 00:19:45,736-presc_run_data_transform-INFO-Transform - top_5_Prescribers() is completed...
+2024-02-22 00:19:45,736-validations-INFO-The Dataframe Schema Validation for Dataframe 'df_city_final_sel'
+2024-02-22 00:19:45,736-validations-INFO-The Dataframe 'df_city_final_sel' schema is 
+2024-02-22 00:19:45,736-validations-INFO-	 'StructField('city', StringType(), True)' 
+2024-02-22 00:19:45,736-validations-INFO-	 'StructField('state_name', StringType(), True)' 
+2024-02-22 00:19:45,736-validations-INFO-	 'StructField('county_name', StringType(), True)' 
+2024-02-22 00:19:45,736-validations-INFO-	 'StructField('population', IntegerType(), True)' 
+2024-02-22 00:19:45,736-validations-INFO-	 'StructField('zip_count', IntegerType(), True)' 
+2024-02-22 00:19:45,736-validations-INFO-	 'StructField('presc_counts', LongType(), False)' 
+2024-02-22 00:19:45,736-validations-INFO-	 'StructField('total_trx_cnt', LongType(), True)' 
+2024-02-22 00:19:45,736-validations-INFO- The Dataframe Schema Validation is completed
+2024-02-22 00:19:45,736-validations-INFO-The Dataframe Validation by count df_count() is started for dataframe 'df_city_final_sel' 
+2024-02-22 00:19:49,854-validations-INFO- The Dataframe 'df_city_final_sel' count is : 10573
+2024-02-22 00:19:49,862-validations-INFO- The Dataframe 'df_city_final_sel' schema is :None
+2024-02-22 00:19:49,862-validations-INFO- The Dataframe 'df_city_final_sel' validation has been completed successfully.
+2024-02-22 00:19:49,862-validations-INFO-The Dataframe Validation by top 10 records df_top10_rec() is started for dataframe 'df_city_final_sel' 
+2024-02-22 00:19:49,862-validations-INFO-The Dataframe top 10 records are : 
+2024-02-22 00:19:55,398-validations-ERROR-Error in the method - df_top10_rec(). Please check the stack trace
+Traceback (most recent call last):
+  File "C:\Users\IDME\PycharmProjects\Spark_Learning_Projects\1.USA_City_Report\src\main\python\bin\validations.py", line 43, in df_top10_rec
+    df_top10_rec_s=df.show(10,truncate=False)
+  File "C:\Program Files\Java\Pyspark Installed\Spark\spark-3.3.0-bin-hadoop3\spark-3.3.0-bin-hadoop3\python\pyspark\sql\dataframe.py", line 615, in show
+    print(self._jdf.showString(n, int_truncate, vertical))
+  File "C:\Program Files\Java\Pyspark Installed\Spark\spark-3.3.0-bin-hadoop3\spark-3.3.0-bin-hadoop3\python\lib\py4j-0.10.9.5-src.zip\py4j\java_gateway.py", line 1321, in __call__
+    return_value = get_return_value(
+  File "C:\Program Files\Java\Pyspark Installed\Spark\spark-3.3.0-bin-hadoop3\spark-3.3.0-bin-hadoop3\python\pyspark\sql\utils.py", line 190, in deco
+    return f(*a, **kw)
+  File "C:\Program Files\Java\Pyspark Installed\Spark\spark-3.3.0-bin-hadoop3\spark-3.3.0-bin-hadoop3\python\lib\py4j-0.10.9.5-src.zip\py4j\protocol.py", line 326, in get_return_value
+    raise Py4JJavaError(
+py4j.protocol.Py4JJavaError: An error occurred while calling o213.showString.
+: org.apache.spark.SparkException: Job aborted due to stage failure: Task 0 in stage 29.0 failed 4 times, most recent failure: Lost task 0.3 in stage 29.0 (TID 29) (XPAP2-D10464.wwg00m.rootdom.net executor 2): java.io.IOException: Cannot run program "python3": CreateProcess error=2, The system cannot find the file specified
+	at java.base/java.lang.ProcessBuilder.start(ProcessBuilder.java:1128)
+	at java.base/java.lang.ProcessBuilder.start(ProcessBuilder.java:1071)
+	at org.apache.spark.api.python.PythonWorkerFactory.createSimpleWorker(PythonWorkerFactory.scala:167)
+	at org.apache.spark.api.python.PythonWorkerFactory.create(PythonWorkerFactory.scala:109)
+	at org.apache.spark.SparkEnv.createPythonWorker(SparkEnv.scala:124)
+	at org.apache.spark.api.python.BasePythonRunner.compute(PythonRunner.scala:164)
+	at org.apache.spark.sql.execution.python.BatchEvalPythonExec.evaluate(BatchEvalPythonExec.scala:81)
+	at org.apache.spark.sql.execution.python.EvalPythonExec.$anonfun$doExecute$2(EvalPythonExec.scala:130)
+	at org.apache.spark.rdd.RDD.$anonfun$mapPartitions$2(RDD.scala:855)
+	at org.apache.spark.rdd.RDD.$anonfun$mapPartitions$2$adapted(RDD.scala:855)
+	at org.apache.spark.rdd.MapPartitionsRDD.compute(MapPartitionsRDD.scala:52)
+	at org.apache.spark.rdd.RDD.computeOrReadCheckpoint(RDD.scala:365)
+	at org.apache.spark.rdd.RDD.iterator(RDD.scala:329)
+	at org.apache.spark.rdd.MapPartitionsRDD.compute(MapPartitionsRDD.scala:52)
+	at org.apache.spark.rdd.RDD.computeOrReadCheckpoint(RDD.scala:365)
+	at org.apache.spark.rdd.RDD.iterator(RDD.scala:329)
+	at org.apache.spark.rdd.MapPartitionsRDD.compute(MapPartitionsRDD.scala:52)
+	at org.apache.spark.rdd.RDD.computeOrReadCheckpoint(RDD.scala:365)
+	at org.apache.spark.rdd.RDD.iterator(RDD.scala:329)
+	at org.apache.spark.scheduler.ResultTask.runTask(ResultTask.scala:90)
+	at org.apache.spark.scheduler.Task.run(Task.scala:136)
+	at org.apache.spark.executor.Executor$TaskRunner.$anonfun$run$3(Executor.scala:548)
+	at org.apache.spark.util.Utils$.tryWithSafeFinally(Utils.scala:1504)
+	at org.apache.spark.executor.Executor$TaskRunner.run(Executor.scala:551)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+Caused by: java.io.IOException: CreateProcess error=2, The system cannot find the file specified
+	at java.base/java.lang.ProcessImpl.create(Native Method)
+	at java.base/java.lang.ProcessImpl.<init>(ProcessImpl.java:420)
+	at java.base/java.lang.ProcessImpl.start(ProcessImpl.java:151)
+	at java.base/java.lang.ProcessBuilder.start(ProcessBuilder.java:1107)
+	... 26 more
+
+Driver stacktrace:
+	at org.apache.spark.scheduler.DAGScheduler.failJobAndIndependentStages(DAGScheduler.scala:2672)
+	at org.apache.spark.scheduler.DAGScheduler.$anonfun$abortStage$2(DAGScheduler.scala:2608)
+	at org.apache.spark.scheduler.DAGScheduler.$anonfun$abortStage$2$adapted(DAGScheduler.scala:2607)
+	at scala.collection.mutable.ResizableArray.foreach(ResizableArray.scala:62)
+	at scala.collection.mutable.ResizableArray.foreach$(ResizableArray.scala:55)
+	at scala.collection.mutable.ArrayBuffer.foreach(ArrayBuffer.scala:49)
+	at org.apache.spark.scheduler.DAGScheduler.abortStage(DAGScheduler.scala:2607)
+	at org.apache.spark.scheduler.DAGScheduler.$anonfun$handleTaskSetFailed$1(DAGScheduler.scala:1182)
+	at org.apache.spark.scheduler.DAGScheduler.$anonfun$handleTaskSetFailed$1$adapted(DAGScheduler.scala:1182)
+	at scala.Option.foreach(Option.scala:407)
+	at org.apache.spark.scheduler.DAGScheduler.handleTaskSetFailed(DAGScheduler.scala:1182)
+	at org.apache.spark.scheduler.DAGSchedulerEventProcessLoop.doOnReceive(DAGScheduler.scala:2860)
+	at org.apache.spark.scheduler.DAGSchedulerEventProcessLoop.onReceive(DAGScheduler.scala:2802)
+	at org.apache.spark.scheduler.DAGSchedulerEventProcessLoop.onReceive(DAGScheduler.scala:2791)
+	at org.apache.spark.util.EventLoop$$anon$1.run(EventLoop.scala:49)
+	at org.apache.spark.scheduler.DAGScheduler.runJob(DAGScheduler.scala:952)
+	at org.apache.spark.SparkContext.runJob(SparkContext.scala:2228)
+	at org.apache.spark.SparkContext.runJob(SparkContext.scala:2249)
+	at org.apache.spark.SparkContext.runJob(SparkContext.scala:2268)
+	at org.apache.spark.SparkContext.runJob(SparkContext.scala:2293)
+	at org.apache.spark.rdd.RDD.$anonfun$collect$1(RDD.scala:1021)
+	at org.apache.spark.rdd.RDDOperationScope$.withScope(RDDOperationScope.scala:151)
+	at org.apache.spark.rdd.RDDOperationScope$.withScope(RDDOperationScope.scala:112)
+	at org.apache.spark.rdd.RDD.withScope(RDD.scala:406)
+	at org.apache.spark.rdd.RDD.collect(RDD.scala:1020)
+	at org.apache.spark.sql.execution.SparkPlan.executeCollectIterator(SparkPlan.scala:431)
+	at org.apache.spark.sql.execution.exchange.BroadcastExchangeExec.$anonfun$relationFuture$1(BroadcastExchangeExec.scala:137)
+	at org.apache.spark.sql.execution.SQLExecution$.$anonfun$withThreadLocalCaptured$1(SQLExecution.scala:191)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+Caused by: java.io.IOException: Cannot run program "python3": CreateProcess error=2, The system cannot find the file specified
+	at java.base/java.lang.ProcessBuilder.start(ProcessBuilder.java:1128)
+	at java.base/java.lang.ProcessBuilder.start(ProcessBuilder.java:1071)
+	at org.apache.spark.api.python.PythonWorkerFactory.createSimpleWorker(PythonWorkerFactory.scala:167)
+	at org.apache.spark.api.python.PythonWorkerFactory.create(PythonWorkerFactory.scala:109)
+	at org.apache.spark.SparkEnv.createPythonWorker(SparkEnv.scala:124)
+	at org.apache.spark.api.python.BasePythonRunner.compute(PythonRunner.scala:164)
+	at org.apache.spark.sql.execution.python.BatchEvalPythonExec.evaluate(BatchEvalPythonExec.scala:81)
+	at org.apache.spark.sql.execution.python.EvalPythonExec.$anonfun$doExecute$2(EvalPythonExec.scala:130)
+	at org.apache.spark.rdd.RDD.$anonfun$mapPartitions$2(RDD.scala:855)
+	at org.apache.spark.rdd.RDD.$anonfun$mapPartitions$2$adapted(RDD.scala:855)
+	at org.apache.spark.rdd.MapPartitionsRDD.compute(MapPartitionsRDD.scala:52)
+	at org.apache.spark.rdd.RDD.computeOrReadCheckpoint(RDD.scala:365)
+	at org.apache.spark.rdd.RDD.iterator(RDD.scala:329)
+	at org.apache.spark.rdd.MapPartitionsRDD.compute(MapPartitionsRDD.scala:52)
+	at org.apache.spark.rdd.RDD.computeOrReadCheckpoint(RDD.scala:365)
+	at org.apache.spark.rdd.RDD.iterator(RDD.scala:329)
+	at org.apache.spark.rdd.MapPartitionsRDD.compute(MapPartitionsRDD.scala:52)
+	at org.apache.spark.rdd.RDD.computeOrReadCheckpoint(RDD.scala:365)
+	at org.apache.spark.rdd.RDD.iterator(RDD.scala:329)
+	at org.apache.spark.scheduler.ResultTask.runTask(ResultTask.scala:90)
+	at org.apache.spark.scheduler.Task.run(Task.scala:136)
+	at org.apache.spark.executor.Executor$TaskRunner.$anonfun$run$3(Executor.scala:548)
+	at org.apache.spark.util.Utils$.tryWithSafeFinally(Utils.scala:1504)
+	at org.apache.spark.executor.Executor$TaskRunner.run(Executor.scala:551)
+	... 3 more
+Caused by: java.io.IOException: CreateProcess error=2, The system cannot find the file specified
+	at java.base/java.lang.ProcessImpl.create(Native Method)
+	at java.base/java.lang.ProcessImpl.<init>(ProcessImpl.java:420)
+	at java.base/java.lang.ProcessImpl.start(ProcessImpl.java:151)
+	at java.base/java.lang.ProcessBuilder.start(ProcessBuilder.java:1107)
+	... 26 more
+
+2024-02-22 00:19:55,403-root-ERROR-Error occurred in the main() method. Please check the Stack Trace to go to the respective moduleAn error occurred while calling o213.showString.
+: org.apache.spark.SparkException: Job aborted due to stage failure: Task 0 in stage 29.0 failed 4 times, most recent failure: Lost task 0.3 in stage 29.0 (TID 29) (XPAP2-D10464.wwg00m.rootdom.net executor 2): java.io.IOException: Cannot run program "python3": CreateProcess error=2, The system cannot find the file specified
+	at java.base/java.lang.ProcessBuilder.start(ProcessBuilder.java:1128)
+	at java.base/java.lang.ProcessBuilder.start(ProcessBuilder.java:1071)
+	at org.apache.spark.api.python.PythonWorkerFactory.createSimpleWorker(PythonWorkerFactory.scala:167)
+	at org.apache.spark.api.python.PythonWorkerFactory.create(PythonWorkerFactory.scala:109)
+	at org.apache.spark.SparkEnv.createPythonWorker(SparkEnv.scala:124)
+	at org.apache.spark.api.python.BasePythonRunner.compute(PythonRunner.scala:164)
+	at org.apache.spark.sql.execution.python.BatchEvalPythonExec.evaluate(BatchEvalPythonExec.scala:81)
+	at org.apache.spark.sql.execution.python.EvalPythonExec.$anonfun$doExecute$2(EvalPythonExec.scala:130)
+	at org.apache.spark.rdd.RDD.$anonfun$mapPartitions$2(RDD.scala:855)
+	at org.apache.spark.rdd.RDD.$anonfun$mapPartitions$2$adapted(RDD.scala:855)
+	at org.apache.spark.rdd.MapPartitionsRDD.compute(MapPartitionsRDD.scala:52)
+	at org.apache.spark.rdd.RDD.computeOrReadCheckpoint(RDD.scala:365)
+	at org.apache.spark.rdd.RDD.iterator(RDD.scala:329)
+	at org.apache.spark.rdd.MapPartitionsRDD.compute(MapPartitionsRDD.scala:52)
+	at org.apache.spark.rdd.RDD.computeOrReadCheckpoint(RDD.scala:365)
+	at org.apache.spark.rdd.RDD.iterator(RDD.scala:329)
+	at org.apache.spark.rdd.MapPartitionsRDD.compute(MapPartitionsRDD.scala:52)
+	at org.apache.spark.rdd.RDD.computeOrReadCheckpoint(RDD.scala:365)
+	at org.apache.spark.rdd.RDD.iterator(RDD.scala:329)
+	at org.apache.spark.scheduler.ResultTask.runTask(ResultTask.scala:90)
+	at org.apache.spark.scheduler.Task.run(Task.scala:136)
+	at org.apache.spark.executor.Executor$TaskRunner.$anonfun$run$3(Executor.scala:548)
+	at org.apache.spark.util.Utils$.tryWithSafeFinally(Utils.scala:1504)
+	at org.apache.spark.executor.Executor$TaskRunner.run(Executor.scala:551)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+Caused by: java.io.IOException: CreateProcess error=2, The system cannot find the file specified
+	at java.base/java.lang.ProcessImpl.create(Native Method)
+	at java.base/java.lang.ProcessImpl.<init>(ProcessImpl.java:420)
+	at java.base/java.lang.ProcessImpl.start(ProcessImpl.java:151)
+	at java.base/java.lang.ProcessBuilder.start(ProcessBuilder.java:1107)
+	... 26 more
+
+Driver stacktrace:
+	at org.apache.spark.scheduler.DAGScheduler.failJobAndIndependentStages(DAGScheduler.scala:2672)
+	at org.apache.spark.scheduler.DAGScheduler.$anonfun$abortStage$2(DAGScheduler.scala:2608)
+	at org.apache.spark.scheduler.DAGScheduler.$anonfun$abortStage$2$adapted(DAGScheduler.scala:2607)
+	at scala.collection.mutable.ResizableArray.foreach(ResizableArray.scala:62)
+	at scala.collection.mutable.ResizableArray.foreach$(ResizableArray.scala:55)
+	at scala.collection.mutable.ArrayBuffer.foreach(ArrayBuffer.scala:49)
+	at org.apache.spark.scheduler.DAGScheduler.abortStage(DAGScheduler.scala:2607)
+	at org.apache.spark.scheduler.DAGScheduler.$anonfun$handleTaskSetFailed$1(DAGScheduler.scala:1182)
+	at org.apache.spark.scheduler.DAGScheduler.$anonfun$handleTaskSetFailed$1$adapted(DAGScheduler.scala:1182)
+	at scala.Option.foreach(Option.scala:407)
+	at org.apache.spark.scheduler.DAGScheduler.handleTaskSetFailed(DAGScheduler.scala:1182)
+	at org.apache.spark.scheduler.DAGSchedulerEventProcessLoop.doOnReceive(DAGScheduler.scala:2860)
+	at org.apache.spark.scheduler.DAGSchedulerEventProcessLoop.onReceive(DAGScheduler.scala:2802)
+	at org.apache.spark.scheduler.DAGSchedulerEventProcessLoop.onReceive(DAGScheduler.scala:2791)
+	at org.apache.spark.util.EventLoop$$anon$1.run(EventLoop.scala:49)
+	at org.apache.spark.scheduler.DAGScheduler.runJob(DAGScheduler.scala:952)
+	at org.apache.spark.SparkContext.runJob(SparkContext.scala:2228)
+	at org.apache.spark.SparkContext.runJob(SparkContext.scala:2249)
+	at org.apache.spark.SparkContext.runJob(SparkContext.scala:2268)
+	at org.apache.spark.SparkContext.runJob(SparkContext.scala:2293)
+	at org.apache.spark.rdd.RDD.$anonfun$collect$1(RDD.scala:1021)
+	at org.apache.spark.rdd.RDDOperationScope$.withScope(RDDOperationScope.scala:151)
+	at org.apache.spark.rdd.RDDOperationScope$.withScope(RDDOperationScope.scala:112)
+	at org.apache.spark.rdd.RDD.withScope(RDD.scala:406)
+	at org.apache.spark.rdd.RDD.collect(RDD.scala:1020)
+	at org.apache.spark.sql.execution.SparkPlan.executeCollectIterator(SparkPlan.scala:431)
+	at org.apache.spark.sql.execution.exchange.BroadcastExchangeExec.$anonfun$relationFuture$1(BroadcastExchangeExec.scala:137)
+	at org.apache.spark.sql.execution.SQLExecution$.$anonfun$withThreadLocalCaptured$1(SQLExecution.scala:191)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+Caused by: java.io.IOException: Cannot run program "python3": CreateProcess error=2, The system cannot find the file specified
+	at java.base/java.lang.ProcessBuilder.start(ProcessBuilder.java:1128)
+	at java.base/java.lang.ProcessBuilder.start(ProcessBuilder.java:1071)
+	at org.apache.spark.api.python.PythonWorkerFactory.createSimpleWorker(PythonWorkerFactory.scala:167)
+	at org.apache.spark.api.python.PythonWorkerFactory.create(PythonWorkerFactory.scala:109)
+	at org.apache.spark.SparkEnv.createPythonWorker(SparkEnv.scala:124)
+	at org.apache.spark.api.python.BasePythonRunner.compute(PythonRunner.scala:164)
+	at org.apache.spark.sql.execution.python.BatchEvalPythonExec.evaluate(BatchEvalPythonExec.scala:81)
+	at org.apache.spark.sql.execution.python.EvalPythonExec.$anonfun$doExecute$2(EvalPythonExec.scala:130)
+	at org.apache.spark.rdd.RDD.$anonfun$mapPartitions$2(RDD.scala:855)
+	at org.apache.spark.rdd.RDD.$anonfun$mapPartitions$2$adapted(RDD.scala:855)
+	at org.apache.spark.rdd.MapPartitionsRDD.compute(MapPartitionsRDD.scala:52)
+	at org.apache.spark.rdd.RDD.computeOrReadCheckpoint(RDD.scala:365)
+	at org.apache.spark.rdd.RDD.iterator(RDD.scala:329)
+	at org.apache.spark.rdd.MapPartitionsRDD.compute(MapPartitionsRDD.scala:52)
+	at org.apache.spark.rdd.RDD.computeOrReadCheckpoint(RDD.scala:365)
+	at org.apache.spark.rdd.RDD.iterator(RDD.scala:329)
+	at org.apache.spark.rdd.MapPartitionsRDD.compute(MapPartitionsRDD.scala:52)
+	at org.apache.spark.rdd.RDD.computeOrReadCheckpoint(RDD.scala:365)
+	at org.apache.spark.rdd.RDD.iterator(RDD.scala:329)
+	at org.apache.spark.scheduler.ResultTask.runTask(ResultTask.scala:90)
+	at org.apache.spark.scheduler.Task.run(Task.scala:136)
+	at org.apache.spark.executor.Executor$TaskRunner.$anonfun$run$3(Executor.scala:548)
+	at org.apache.spark.util.Utils$.tryWithSafeFinally(Utils.scala:1504)
+	at org.apache.spark.executor.Executor$TaskRunner.run(Executor.scala:551)
+	... 3 more
+Caused by: java.io.IOException: CreateProcess error=2, The system cannot find the file specified
+	at java.base/java.lang.ProcessImpl.create(Native Method)
+	at java.base/java.lang.ProcessImpl.<init>(ProcessImpl.java:420)
+	at java.base/java.lang.ProcessImpl.start(ProcessImpl.java:151)
+	at java.base/java.lang.ProcessBuilder.start(ProcessBuilder.java:1107)
+	... 26 more
+Traceback (most recent call last):
+  File "C:\Users\IDME\PycharmProjects\Spark_Learning_Projects\1.USA_City_Report\src\main\python\bin\run_presc_pipeline.py", line 146, in main
+    df_top10_rec(df=df_city_final_sel, dfName="df_city_final_sel")
+  File "C:\Users\IDME\PycharmProjects\Spark_Learning_Projects\1.USA_City_Report\src\main\python\bin\validations.py", line 43, in df_top10_rec
+    df_top10_rec_s=df.show(10,truncate=False)
+  File "C:\Program Files\Java\Pyspark Installed\Spark\spark-3.3.0-bin-hadoop3\spark-3.3.0-bin-hadoop3\python\pyspark\sql\dataframe.py", line 615, in show
+    print(self._jdf.showString(n, int_truncate, vertical))
+  File "C:\Program Files\Java\Pyspark Installed\Spark\spark-3.3.0-bin-hadoop3\spark-3.3.0-bin-hadoop3\python\lib\py4j-0.10.9.5-src.zip\py4j\java_gateway.py", line 1321, in __call__
+    return_value = get_return_value(
+  File "C:\Program Files\Java\Pyspark Installed\Spark\spark-3.3.0-bin-hadoop3\spark-3.3.0-bin-hadoop3\python\pyspark\sql\utils.py", line 190, in deco
+    return f(*a, **kw)
+  File "C:\Program Files\Java\Pyspark Installed\Spark\spark-3.3.0-bin-hadoop3\spark-3.3.0-bin-hadoop3\python\lib\py4j-0.10.9.5-src.zip\py4j\protocol.py", line 326, in get_return_value
+    raise Py4JJavaError(
+py4j.protocol.Py4JJavaError: An error occurred while calling o213.showString.
+: org.apache.spark.SparkException: Job aborted due to stage failure: Task 0 in stage 29.0 failed 4 times, most recent failure: Lost task 0.3 in stage 29.0 (TID 29) (XPAP2-D10464.wwg00m.rootdom.net executor 2): java.io.IOException: Cannot run program "python3": CreateProcess error=2, The system cannot find the file specified
+	at java.base/java.lang.ProcessBuilder.start(ProcessBuilder.java:1128)
+	at java.base/java.lang.ProcessBuilder.start(ProcessBuilder.java:1071)
+	at org.apache.spark.api.python.PythonWorkerFactory.createSimpleWorker(PythonWorkerFactory.scala:167)
+	at org.apache.spark.api.python.PythonWorkerFactory.create(PythonWorkerFactory.scala:109)
+	at org.apache.spark.SparkEnv.createPythonWorker(SparkEnv.scala:124)
+	at org.apache.spark.api.python.BasePythonRunner.compute(PythonRunner.scala:164)
+	at org.apache.spark.sql.execution.python.BatchEvalPythonExec.evaluate(BatchEvalPythonExec.scala:81)
+	at org.apache.spark.sql.execution.python.EvalPythonExec.$anonfun$doExecute$2(EvalPythonExec.scala:130)
+	at org.apache.spark.rdd.RDD.$anonfun$mapPartitions$2(RDD.scala:855)
+	at org.apache.spark.rdd.RDD.$anonfun$mapPartitions$2$adapted(RDD.scala:855)
+	at org.apache.spark.rdd.MapPartitionsRDD.compute(MapPartitionsRDD.scala:52)
+	at org.apache.spark.rdd.RDD.computeOrReadCheckpoint(RDD.scala:365)
+	at org.apache.spark.rdd.RDD.iterator(RDD.scala:329)
+	at org.apache.spark.rdd.MapPartitionsRDD.compute(MapPartitionsRDD.scala:52)
+	at org.apache.spark.rdd.RDD.computeOrReadCheckpoint(RDD.scala:365)
+	at org.apache.spark.rdd.RDD.iterator(RDD.scala:329)
+	at org.apache.spark.rdd.MapPartitionsRDD.compute(MapPartitionsRDD.scala:52)
+	at org.apache.spark.rdd.RDD.computeOrReadCheckpoint(RDD.scala:365)
+	at org.apache.spark.rdd.RDD.iterator(RDD.scala:329)
+	at org.apache.spark.scheduler.ResultTask.runTask(ResultTask.scala:90)
+	at org.apache.spark.scheduler.Task.run(Task.scala:136)
+	at org.apache.spark.executor.Executor$TaskRunner.$anonfun$run$3(Executor.scala:548)
+	at org.apache.spark.util.Utils$.tryWithSafeFinally(Utils.scala:1504)
+	at org.apache.spark.executor.Executor$TaskRunner.run(Executor.scala:551)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+Caused by: java.io.IOException: CreateProcess error=2, The system cannot find the file specified
+	at java.base/java.lang.ProcessImpl.create(Native Method)
+	at java.base/java.lang.ProcessImpl.<init>(ProcessImpl.java:420)
+	at java.base/java.lang.ProcessImpl.start(ProcessImpl.java:151)
+	at java.base/java.lang.ProcessBuilder.start(ProcessBuilder.java:1107)
+	... 26 more
+
+Driver stacktrace:
+	at org.apache.spark.scheduler.DAGScheduler.failJobAndIndependentStages(DAGScheduler.scala:2672)
+	at org.apache.spark.scheduler.DAGScheduler.$anonfun$abortStage$2(DAGScheduler.scala:2608)
+	at org.apache.spark.scheduler.DAGScheduler.$anonfun$abortStage$2$adapted(DAGScheduler.scala:2607)
+	at scala.collection.mutable.ResizableArray.foreach(ResizableArray.scala:62)
+	at scala.collection.mutable.ResizableArray.foreach$(ResizableArray.scala:55)
+	at scala.collection.mutable.ArrayBuffer.foreach(ArrayBuffer.scala:49)
+	at org.apache.spark.scheduler.DAGScheduler.abortStage(DAGScheduler.scala:2607)
+	at org.apache.spark.scheduler.DAGScheduler.$anonfun$handleTaskSetFailed$1(DAGScheduler.scala:1182)
+	at org.apache.spark.scheduler.DAGScheduler.$anonfun$handleTaskSetFailed$1$adapted(DAGScheduler.scala:1182)
+	at scala.Option.foreach(Option.scala:407)
+	at org.apache.spark.scheduler.DAGScheduler.handleTaskSetFailed(DAGScheduler.scala:1182)
+	at org.apache.spark.scheduler.DAGSchedulerEventProcessLoop.doOnReceive(DAGScheduler.scala:2860)
+	at org.apache.spark.scheduler.DAGSchedulerEventProcessLoop.onReceive(DAGScheduler.scala:2802)
+	at org.apache.spark.scheduler.DAGSchedulerEventProcessLoop.onReceive(DAGScheduler.scala:2791)
+	at org.apache.spark.util.EventLoop$$anon$1.run(EventLoop.scala:49)
+	at org.apache.spark.scheduler.DAGScheduler.runJob(DAGScheduler.scala:952)
+	at org.apache.spark.SparkContext.runJob(SparkContext.scala:2228)
+	at org.apache.spark.SparkContext.runJob(SparkContext.scala:2249)
+	at org.apache.spark.SparkContext.runJob(SparkContext.scala:2268)
+	at org.apache.spark.SparkContext.runJob(SparkContext.scala:2293)
+	at org.apache.spark.rdd.RDD.$anonfun$collect$1(RDD.scala:1021)
+	at org.apache.spark.rdd.RDDOperationScope$.withScope(RDDOperationScope.scala:151)
+	at org.apache.spark.rdd.RDDOperationScope$.withScope(RDDOperationScope.scala:112)
+	at org.apache.spark.rdd.RDD.withScope(RDD.scala:406)
+	at org.apache.spark.rdd.RDD.collect(RDD.scala:1020)
+	at org.apache.spark.sql.execution.SparkPlan.executeCollectIterator(SparkPlan.scala:431)
+	at org.apache.spark.sql.execution.exchange.BroadcastExchangeExec.$anonfun$relationFuture$1(BroadcastExchangeExec.scala:137)
+	at org.apache.spark.sql.execution.SQLExecution$.$anonfun$withThreadLocalCaptured$1(SQLExecution.scala:191)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+Caused by: java.io.IOException: Cannot run program "python3": CreateProcess error=2, The system cannot find the file specified
+	at java.base/java.lang.ProcessBuilder.start(ProcessBuilder.java:1128)
+	at java.base/java.lang.ProcessBuilder.start(ProcessBuilder.java:1071)
+	at org.apache.spark.api.python.PythonWorkerFactory.createSimpleWorker(PythonWorkerFactory.scala:167)
+	at org.apache.spark.api.python.PythonWorkerFactory.create(PythonWorkerFactory.scala:109)
+	at org.apache.spark.SparkEnv.createPythonWorker(SparkEnv.scala:124)
+	at org.apache.spark.api.python.BasePythonRunner.compute(PythonRunner.scala:164)
+	at org.apache.spark.sql.execution.python.BatchEvalPythonExec.evaluate(BatchEvalPythonExec.scala:81)
+	at org.apache.spark.sql.execution.python.EvalPythonExec.$anonfun$doExecute$2(EvalPythonExec.scala:130)
+	at org.apache.spark.rdd.RDD.$anonfun$mapPartitions$2(RDD.scala:855)
+	at org.apache.spark.rdd.RDD.$anonfun$mapPartitions$2$adapted(RDD.scala:855)
+	at org.apache.spark.rdd.MapPartitionsRDD.compute(MapPartitionsRDD.scala:52)
+	at org.apache.spark.rdd.RDD.computeOrReadCheckpoint(RDD.scala:365)
+	at org.apache.spark.rdd.RDD.iterator(RDD.scala:329)
+	at org.apache.spark.rdd.MapPartitionsRDD.compute(MapPartitionsRDD.scala:52)
+	at org.apache.spark.rdd.RDD.computeOrReadCheckpoint(RDD.scala:365)
+	at org.apache.spark.rdd.RDD.iterator(RDD.scala:329)
+	at org.apache.spark.rdd.MapPartitionsRDD.compute(MapPartitionsRDD.scala:52)
+	at org.apache.spark.rdd.RDD.computeOrReadCheckpoint(RDD.scala:365)
+	at org.apache.spark.rdd.RDD.iterator(RDD.scala:329)
+	at org.apache.spark.scheduler.ResultTask.runTask(ResultTask.scala:90)
+	at org.apache.spark.scheduler.Task.run(Task.scala:136)
+	at org.apache.spark.executor.Executor$TaskRunner.$anonfun$run$3(Executor.scala:548)
+	at org.apache.spark.util.Utils$.tryWithSafeFinally(Utils.scala:1504)
+	at org.apache.spark.executor.Executor$TaskRunner.run(Executor.scala:551)
+	... 3 more
+Caused by: java.io.IOException: CreateProcess error=2, The system cannot find the file specified
+	at java.base/java.lang.ProcessImpl.create(Native Method)
+	at java.base/java.lang.ProcessImpl.<init>(ProcessImpl.java:420)
+	at java.base/java.lang.ProcessImpl.start(ProcessImpl.java:151)
+	at java.base/java.lang.ProcessBuilder.start(ProcessBuilder.java:1107)
+	... 26 more
+
